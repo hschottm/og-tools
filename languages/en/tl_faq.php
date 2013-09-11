@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
 
 /**
  * Contao Open Source CMS
@@ -13,6 +13,10 @@
 
 
 /**
- * Miscellaneous
+ * Fields
  */
-$GLOBALS['TL_LANG']['MSC'][''] = '';
+
+/**
+ * Legends
+ */
+$GLOBALS['TL_LANG']['tl_faq']['og_legend']         = 'OpenGraph Metadata';

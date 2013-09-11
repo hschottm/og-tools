@@ -20,7 +20,6 @@ $GLOBALS['TL_DCA']['tl_og_type'] = array
 	'config' => array
 	(
 		'dataContainer'               => 'Table',
-		'enableVersioning'            => true,
 		'sql' => array
 		(
 			'keys' => array
@@ -35,6 +34,10 @@ $GLOBALS['TL_DCA']['tl_og_type'] = array
 		'id' => array
 		(
 			'sql'                     => "int(10) unsigned NOT NULL auto_increment"
+		),
+		'tstamp' => array
+		(
+			'sql'                     => "int(10) unsigned NOT NULL default '0'"
 		),
 		'name' => array
 		(
