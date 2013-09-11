@@ -38,10 +38,10 @@ class ModuleFaqReader extends \Contao\ModuleFaqReader
 		{
 					if ($faq->og_add)
 					{
-						if (strlen($faq->og_title)) $GLOBALS['TL_HEAD'][] = '<meta property="og:title" content="' . \String::toHtml5($faq->og_title, true) . '"/>';
+						if (strlen($faq->og_title)) $GLOBALS['TL_HEAD'][] = '<meta property="og:title" content="' . specialchars($faq->og_title) . '"/>';
 						if (strlen($faq->og_url)) 
 						{
-							$GLOBALS['TL_HEAD'][] = '<meta property="og:url" content="' . \String::toHtml5($faq->og_url, true) . '"/>';
+							$GLOBALS['TL_HEAD'][] = '<meta property="og:url" content="' . specialchars($faq->og_url) . '"/>';
 						}
 						else
 						{
@@ -55,14 +55,14 @@ class ModuleFaqReader extends \Contao\ModuleFaqReader
 							}
 							if (strlen($absoluteurl))
 							{
-								$GLOBALS['TL_HEAD'][] = '<meta property="og:url" content="' . \String::toHtml5($absoluteurl, true) . '"/>';
+								$GLOBALS['TL_HEAD'][] = '<meta property="og:url" content="' . specialchars($absoluteurl) . '"/>';
 							}
 						}
-						if (strlen($faq->og_site_name)) $GLOBALS['TL_HEAD'][] = '<meta property="og:site_name" content="' . \String::toHtml5($faq->og_site_name, true) . '"/>';
+						if (strlen($faq->og_site_name)) $GLOBALS['TL_HEAD'][] = '<meta property="og:site_name" content="' . specialchars($faq->og_site_name) . '"/>';
 						$t = \OGTypeModel::findOneById($faq->og_type);
 						if ($t)
 						{
-							if (strlen($faq->og_type)) $GLOBALS['TL_HEAD'][] = '<meta property="og:type" content="' .\String::toHtml5($t->name, true) . '"/>';
+							if (strlen($faq->og_type)) $GLOBALS['TL_HEAD'][] = '<meta property="og:type" content="' .specialchars($t->name) . '"/>';
 						}
 						$images = array();
 						if (strlen($this->Template->src)) 
