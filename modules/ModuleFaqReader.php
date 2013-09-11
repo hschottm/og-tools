@@ -38,20 +38,31 @@ class ModuleFaqReader extends \Contao\ModuleFaqReader
 		{
 					if ($faq->og_add)
 					{
-						if (strlen($faq->og_title)) $GLOBALS['TL_HEAD'][] = '<meta property="og:title" content="' . $faq->og_title . '"/>';
+						if (strlen($faq->og_title)) $GLOBALS['TL_HEAD'][] = '<meta property="og:title" content="' . \String::toHtml5($faq->og_title, true) . '"/>';
 						if (strlen($faq->og_url)) 
 						{
-							$GLOBALS['TL_HEAD'][] = '<meta property="og:url" content="' . $faq->og_url . '"/>';
+							$GLOBALS['TL_HEAD'][] = '<meta property="og:url" content="' . \String::toHtml5($faq->og_url, true) . '"/>';
 						}
 						else
 						{
-							$GLOBALS['TL_HEAD'][] = '<meta property="og:url" content="{{faq_url::' . \Input::get('items') . '}}"/>';
+							$doc = new \DOMDocument();
+							$doc->loadHTML($this->convertRelativeUrls('<img src="' . $this->replaceInsertTags('{{faq_url::' . \Input::get('items') . '}}') . '" />'));
+							$imageTags = $doc->getElementsByTagName('img');
+							$absoluteurl = '';
+							foreach($imageTags as $tag) 
+							{
+								$absoluteurl = $tag->getAttribute('src');
+							}
+							if (strlen($absoluteurl))
+							{
+								$GLOBALS['TL_HEAD'][] = '<meta property="og:url" content="' . \String::toHtml5($absoluteurl, true) . '"/>';
+							}
 						}
-						if (strlen($faq->og_site_name)) $GLOBALS['TL_HEAD'][] = '<meta property="og:site_name" content="' . $faq->og_site_name . '"/>';
+						if (strlen($faq->og_site_name)) $GLOBALS['TL_HEAD'][] = '<meta property="og:site_name" content="' . \String::toHtml5($faq->og_site_name, true) . '"/>';
 						$t = \OGTypeModel::findOneById($faq->og_type);
 						if ($t)
 						{
-							if (strlen($faq->og_type)) $GLOBALS['TL_HEAD'][] = '<meta property="og:type" content="' . $t->name . '"/>';
+							if (strlen($faq->og_type)) $GLOBALS['TL_HEAD'][] = '<meta property="og:type" content="' .\String::toHtml5($t->name, true) . '"/>';
 						}
 						$images = array();
 						if (strlen($this->Template->src)) 
