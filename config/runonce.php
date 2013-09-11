@@ -45,12 +45,13 @@ class OGRunonceJob extends Controller
 
 		foreach( $data as $row ) 
 		{ 
-			$arrProcedures[] = '(?,?)'; 
+			$arrProcedures[] = '(?,?,?)'; 
 			$arrValues[] = $row['name']; 
 			$arrValues[] = $row['category']; 
+			$arrValues[] = time(); 
 		} 
 
-		$this->Database->prepare("INSERT INTO tl_og_type (name, category) VALUES " . implode(',', $arrProcedures))->execute($arrValues);  
+		$this->Database->prepare("INSERT INTO tl_og_type (name, category, tstamp) VALUES " . implode(',', $arrProcedures))->execute($arrValues);  
 	}
 }
 
