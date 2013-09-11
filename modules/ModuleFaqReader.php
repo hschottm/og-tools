@@ -64,29 +64,32 @@ class ModuleFaqReader extends \Contao\ModuleFaqReader
 						{
 							if (strlen($faq->og_type)) $GLOBALS['TL_HEAD'][] = '<meta property="og:type" content="' .specialchars($t->name) . '"/>';
 						}
-						$images = array();
-						if (strlen($this->Template->src)) 
+						if ($faq->og_images)
 						{
+							$images = array();
+							if (strlen($this->Template->src)) 
+							{
+								$doc = new \DOMDocument();
+								$doc->loadHTML($this->convertRelativeUrls('<img src="' . $this->Template->src . '" />'));
+								$imageTags = $doc->getElementsByTagName('img');
+								foreach($imageTags as $tag) 
+								{
+									$images[] = $tag->getAttribute('src');
+								}
+							}
 							$doc = new \DOMDocument();
-							$doc->loadHTML($this->convertRelativeUrls('<img src="' . $this->Template->src . '" />'));
+							$doc->loadHTML($this->convertRelativeUrls($this->Template->answer));
 							$imageTags = $doc->getElementsByTagName('img');
 							foreach($imageTags as $tag) 
 							{
 								$images[] = $tag->getAttribute('src');
 							}
-						}
-						$doc = new \DOMDocument();
-						$doc->loadHTML($this->convertRelativeUrls($this->Template->answer));
-						$imageTags = $doc->getElementsByTagName('img');
-						foreach($imageTags as $tag) 
-						{
-							$images[] = $tag->getAttribute('src');
-						}
-						if (count($images))
-						{
-							foreach ($images as $url)
+							if (count($images))
 							{
-								if (strlen($url)) $GLOBALS['TL_HEAD'][] = '<meta property="og:url" content="' . $url . '"/>';
+								foreach ($images as $url)
+								{
+									if (strlen($url)) $GLOBALS['TL_HEAD'][] = '<meta property="og:image" content="' . $url . '"/>';
+								}
 							}
 						}
 					}
