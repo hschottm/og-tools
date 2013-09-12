@@ -95,7 +95,6 @@ class ModuleFaqReader extends \Contao\ModuleFaqReader
 						if (strlen($faq->og_locale)) $GLOBALS['TL_HEAD'][] = '<meta property="og:locale" content="' . specialchars($faq->og_locale) . '"/>';
 						if (strlen($faq->og_determiner)) $GLOBALS['TL_HEAD'][] = '<meta property="og:determiner" content="' . specialchars($faq->og_determiner) . '"/>';
 						if (strlen($faq->og_description)) $GLOBALS['TL_HEAD'][] = '<meta property="og:description" content="' . specialchars($faq->og_description) . '"/>';
-						if (strlen($faq->og_description)) $GLOBALS['TL_HEAD'][] = '<meta name="description" content="' . specialchars($faq->og_description) . '"/>';
 						if (strlen($faq->og_see_also)) $GLOBALS['TL_HEAD'][] = '<meta property="og:see_also" content="' . specialchars($faq->og_see_also) . '"/>';
 					}
 		}
