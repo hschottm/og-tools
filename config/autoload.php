@@ -3,11 +3,9 @@
 /**
  * Contao Open Source CMS
  *
- * Copyright (c) 2005-2013 Leo Feyer
+ * Copyright (c) 2005-2015 Leo Feyer
  *
- * @package Og-tools
- * @link    https://contao.org
- * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
+ * @license LGPL-3.0+
  */
 
 
@@ -26,8 +24,9 @@ ClassLoader::addNamespaces(array
 ClassLoader::addClasses(array
 (
 	// Models
-	'Contao\OGTypeModel'       => 'system/modules/og-tools/models/OGTypeModel.php',
+	'Contao\OGTypeModel'           => 'system/modules/og-tools/models/OGTypeModel.php',
 
 	// Modules
-	'Aurealis\ModuleFaqReader' => 'system/modules/og-tools/modules/ModuleFaqReader.php',
+	'Aurealis\ModuleFaqReader'     => 'system/modules/og-tools/modules/ModuleFaqReader.php',
+	'Aurealis\ModuleFaqReaderBase' => 'system/modules/og-tools/modules/ModuleFaqReaderBase.php',
 ));

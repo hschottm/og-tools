@@ -16,15 +16,14 @@
  */
 namespace Aurealis;
 
-
 /**
  * Class ModuleFaqPage
  *
- * @copyright  Helmut Schottmüller 2013
+ * @copyright  Helmut Schottmüller 2013-2015
  * @author     Helmut Schottmüller <https://github.com/hschottm/og-tools>
  * @package    Faq
  */
-class ModuleFaqReader extends \Contao\ModuleFaqReader
+class ModuleFaqReader extends ModuleFaqReaderBase
 {
 
 	/**
@@ -32,7 +31,7 @@ class ModuleFaqReader extends \Contao\ModuleFaqReader
 	 */
 	protected function compile()
 	{
-		\Contao\ModuleFaqReader::compile();
+		parent::compile();
 		$faq = \FaqModel::findPublishedByParentAndIdOrAlias(\Input::get('items'), $this->faq_categories);
 		if ($faq != null)
 		{
