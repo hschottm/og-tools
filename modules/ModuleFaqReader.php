@@ -77,7 +77,7 @@ class ModuleFaqReader extends ModuleFaqReaderBase
 								}
 							}
 							$doc = new \DOMDocument();
-							$doc->loadHTML($this->convertRelativeUrls($this->Template->answer));
+							$doc->loadHTML(\StringUtil::restoreBasicEntities($this->convertRelativeUrls($this->Template->answer)));
 							$imageTags = $doc->getElementsByTagName('img');
 							foreach($imageTags as $tag) 
 							{
